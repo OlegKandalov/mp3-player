@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public class Album implements AlbumInterface{
+public class Album implements AlbumInterface {
     private String albumTitle;
     private String artist;
     List<Song> album;
@@ -45,7 +45,7 @@ public class Album implements AlbumInterface{
     public void removeFromAlbum(int index) {
         if (album.get(index) == null) {
             System.out.println("empty here");
-        }else {
+        } else {
             album.remove(index);
         }
     }

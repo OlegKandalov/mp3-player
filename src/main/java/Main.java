@@ -49,6 +49,12 @@ public class Main {
         System.out.println("previous song:");
         myPlayer.playPreviousSong();
         System.out.println("####################################");
+        System.out.println("previous song:");
+        myPlayer.playPreviousSong();
+        System.out.println("####################################");
+        System.out.println("previous song:");
+        myPlayer.playPreviousSong();
+        System.out.println("####################################");
         System.out.println("pause and play again:");
         myPlayer.pause();
         myPlayer.play();
@@ -61,7 +67,7 @@ public class Main {
         System.out.println("####################################");
         System.out.println("out of memory:");
         MusicPlayer myPlayer2 = new MusicPlayer();
-        for (int i = 0; i < 257; i++) {
+        for (int i = 0; i < 258; i++) {
             myPlayer2.addSong(song6);
         }
     }

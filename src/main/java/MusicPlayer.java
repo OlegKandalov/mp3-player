@@ -3,11 +3,9 @@ import enumGenre.Genre;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 
 public class MusicPlayer {
     private List<Song> myPlaylist;
-    private ListIterator<Song> listIterator;
     private String titlePlaylist;
     private boolean isPlay;
     private Song current;
@@ -43,11 +41,11 @@ public class MusicPlayer {
     }
 
     public void addSong(Song song) {
-        if (isPlay == true) {
+        if (isPlay) {
             current = play();
             isPlay = false;
         }
-        if (myPlaylist.size() >= 256) { //my player has a little memory :)
+        if (myPlaylist.size() > 256) { //my player has a little memory :)
             System.out.println("Sorry out of memory. Delete some song");
         } else {
             myPlaylist.add(song);
@@ -67,14 +65,14 @@ public class MusicPlayer {
     }
 
     public void removeSong(String titleSong) {
-        if (isPlay == true) {
+        if (isPlay) {
             isPlay = false;
         }
         myPlaylist.removeIf(song -> song.getTitle().equals(titleSong));
     }
 
     public void shufflePlay() {
-        if (isPlay == true) {
+        if (isPlay) {
             isPlay = false;
         }
         Collections.shuffle(myPlaylist);
@@ -89,9 +87,8 @@ public class MusicPlayer {
         }
         if (current != null) {
             isPlay = true;
-            int currentIndex = myPlaylist.indexOf(current);
-            System.out.println("Your song now is " + myPlaylist.get(currentIndex));
-            return myPlaylist.get(currentIndex);
+            System.out.println("Your song now is " + current);
+            return current;
         } else {
             isPlay = true;
             System.out.println("Your song now is " + myPlaylist.get(0));
@@ -114,7 +111,6 @@ public class MusicPlayer {
         if (myPlaylist.get(currentIndex + 1) == null) {
             current = myPlaylist.get(0);
             play();
-            return;
         } else {
             current = myPlaylist.get(currentIndex + 1);
             play();
@@ -128,14 +124,12 @@ public class MusicPlayer {
             return;
         }
         int currentIndex = myPlaylist.indexOf(current);
-        if (myPlaylist.get(currentIndex - 1) == null) {
-            current = myPlaylist.get(0);
-            play();
-            return;
+        if (currentIndex == 0) {
+            current = myPlaylist.get(myPlaylist.size() - 1);
         } else {
             current = myPlaylist.get(currentIndex - 1);
-            play();
         }
+        play();
     }
 
     public void playOnlyLovelyGenre(Genre genre) {

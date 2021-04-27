@@ -11,7 +11,8 @@ public class Song {
         this.genre = genre;
     }
 
-    public Song() {}
+    public Song() {
+    }
 
     public String getTitle() {
         return title;
